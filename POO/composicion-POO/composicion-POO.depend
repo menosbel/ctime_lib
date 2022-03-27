@@ -1,0 +1,32 @@
+# depslib dependency file v1.0
+1631157726 source:c:\users\belen\documents\cursos\laboratorio-ii\composicion-poo\main.cpp
+	<iostream>
+	"Fecha.h"
+	"Hora.h"
+	"Reunion.h"
+
+1631154587 c:\users\belen\documents\cursos\laboratorio-ii\composicion-poo\include\fecha.h
+
+1631154933 source:c:\users\belen\documents\cursos\laboratorio-ii\composicion-poo\src\fecha.cpp
+	<iostream>
+	<clocale>
+	<ctime>
+	"Fecha.h"
+
+1631155525 c:\users\belen\documents\cursos\laboratorio-ii\composicion-poo\include\hora.h
+
+1631155542 source:c:\users\belen\documents\cursos\laboratorio-ii\composicion-poo\src\hora.cpp
+	<iostream>
+	<clocale>
+	<ctime>
+	"Hora.h"
+
+1631157747 c:\users\belen\documents\cursos\laboratorio-ii\composicion-poo\include\reunion.h
+	"Fecha.h"
+	"Hora.h"
+
+1631157915 source:c:\users\belen\documents\cursos\laboratorio-ii\composicion-poo\src\reunion.cpp
+	<iostream>
+	<clocale>
+	"Reunion.h"
+

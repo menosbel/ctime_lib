@@ -1,0 +1,51 @@
+# depslib dependency file v1.0
+1630377979 source:c:\users\belen\documents\cursos\laboratorio-ii\herenciapoo\main.cpp
+	<iostream>
+	<cstdlib>
+	"Persona.h"
+	"Empleado.h"
+	"Director.h"
+	"Profesor.h"
+	"Alumno.h"
+
+1630377233 source:c:\users\belen\documents\cursos\laboratorio-ii\herenciapoo\src\empleado.cpp
+	<iostream>
+	<clocale>
+	"Empleado.h"
+
+1630377081 c:\users\belen\documents\cursos\laboratorio-ii\herenciapoo\include\empleado.h
+	"Persona.h"
+
+1630377659 source:c:\users\belen\documents\cursos\laboratorio-ii\herenciapoo\src\director.cpp
+	<iostream>
+	<clocale>
+	<Director.h>
+
+1631151125 source:c:\users\belen\documents\cursos\laboratorio-ii\herenciapoo\src\persona.cpp
+	<iostream>
+	<clocale>
+	"Persona.h"
+
+1631150921 c:\users\belen\documents\cursos\laboratorio-ii\herenciapoo\include\persona.h
+	<cstring>
+
+1630377741 source:c:\users\belen\documents\cursos\laboratorio-ii\herenciapoo\src\profesor.cpp
+	<iostream>
+	<clocale>
+	<Empleado.h>
+	<Profesor.h>
+
+1630377724 c:\users\belen\documents\cursos\laboratorio-ii\herenciapoo\include\profesor.h
+	"Empleado.h"
+
+1630377718 c:\users\belen\documents\cursos\laboratorio-ii\herenciapoo\include\director.h
+	"Empleado.h"
+
+1630377556 source:c:\users\belen\documents\cursos\laboratorio-ii\herenciapoo\src\alumno.cpp
+	<iostream>
+	<clocale>
+	"Alumno.h"
+
+1631151151 c:\users\belen\documents\cursos\laboratorio-ii\herenciapoo\include\alumno.h
+	"Persona.h"
+
