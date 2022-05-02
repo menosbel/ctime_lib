@@ -80,3 +80,8 @@ void Fecha::mostrar()
 	std::cout << ZeroPadNumber(_dia) << "/" << ZeroPadNumber(_mes) << "/" << _anio << std::endl;
 }
 
+void Fecha::dia_semana()
+{
+	
+}
+
