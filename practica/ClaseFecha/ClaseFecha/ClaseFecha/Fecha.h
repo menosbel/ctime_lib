@@ -18,6 +18,7 @@ public:
 	void setMes(int valor);
 	void setAnio(int valor);
 	void mostrar();
+	void cargar();
 	void dia_semana();
 };
 

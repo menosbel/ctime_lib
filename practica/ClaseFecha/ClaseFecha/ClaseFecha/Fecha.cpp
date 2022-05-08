@@ -80,6 +80,18 @@ void Fecha::mostrar()
 	std::cout << ZeroPadNumber(_dia) << "/" << ZeroPadNumber(_mes) << "/" << _anio << std::endl;
 }
 
+void Fecha::cargar()
+{
+	std::cout << "Fecha de nacimiento" << std::endl;
+	std::cout << "Dia: ";
+	std::cin >> _dia;
+	std::cout << "Mes: ";
+	std::cin >> _mes;
+	std::cout << "Año: ";
+	std::cin >> _anio;
+
+}
+
 void Fecha::dia_semana()
 {
 	
