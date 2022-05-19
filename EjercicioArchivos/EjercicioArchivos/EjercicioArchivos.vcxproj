@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{33368ee8-b817-4bcc-8c90-c3741a0df147}</ProjectGuid>
-    <RootNamespace>archivos</RootNamespace>
+    <ProjectGuid>{68d2a28e-1261-4119-aa86-331b8ce2cd84}</ProjectGuid>
+    <RootNamespace>EjercicioArchivos</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -139,18 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="archivos.cpp" />
-    <ClCompile Include="base_functions.cpp" />
-    <ClCompile Include="Estudiante.cpp" />
-    <ClCompile Include="Examen.cpp" />
-    <ClCompile Include="Fecha.cpp" />
+    <ClInclude Include="Estudiante.h" />
+    <ClInclude Include="Fecha.h" />
+    <ClInclude Include="funciones.h" />
+    <ClInclude Include="rlutil.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="base_functions.h" />
-    <ClInclude Include="Estudiante.h" />
-    <ClInclude Include="Examen.h" />
-    <ClInclude Include="Fecha.h" />
-    <ClInclude Include="rlutil.h" />
+    <ClCompile Include="Estudiante.cpp" />
+    <ClCompile Include="Fecha.cpp" />
+    <ClCompile Include="funciones.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
