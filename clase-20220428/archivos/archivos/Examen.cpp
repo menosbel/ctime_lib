@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 #include "Examen.h"
+#include "base_functions.h"
 #include "rlutil.h"
 
 void Examen::setLegajoAlumno(int valor) { _legajoAlumno = valor; };
@@ -20,32 +21,27 @@ bool Examen::setCalificacion(float valor) {
 };
 
 bool Examen::setTipoExamen(char valor) { 
-	if (toupper(valor) != 'P' || toupper(valor) != 'F')
+	char letra = toupper(valor);
+	if (letra != 'P' && letra != 'F')
 	{
-		cout << valor << endl;
+		cout << letra << endl;
 		cout << "El tipo de examen ingresado es invalido" << endl;
 		rlutil::anykey();
 		return false;
 	}
 	else {
-		_tipoExamen = valor;
+		_tipoExamen = letra;
 		return true;
 	}	
 };
 
-void Examen::cargar()
+bool Examen::cargar()
 {
 	int legajo, codMateria, dia, mes, anio;
 	float calificacion;
 	char tipoExamen;
 
-	cout << "Dia del examen: ";
-	cin >> dia;
-	cout << "Mes del examen: ";
-	cin >> mes;
-	cout << "Año del examen: ";
-	cin >> anio;
-	_fecha = Fecha(dia, mes, anio);
+	_fecha.cargar();
 	cout << "Legajo alumno: ";
 	cin >> legajo;
 	setLegajoAlumno(legajo);
@@ -64,7 +60,17 @@ void Examen::cargar()
 	while (!fallo) {
 		cout << "Tipo de examen (P o F): ";
 		cin >> tipoExamen;
-		fallo = setTipoExamen(codMateria);
+		fallo = setTipoExamen(tipoExamen);
+	}
+
+	if (!examen_es_unico(*this))
+	{
+		cout << "Este examen ya existe" << endl;
+		return false;
+	}
+	else
+	{
+		return true;
 	}
 }
 
@@ -85,6 +91,19 @@ bool Examen::guardar_en_disco()
 	err = fopen_s(&p, "examenes.dat", "ab");
 	if (err != 0) { return false; }
 
+	bool guardo = fwrite(this, sizeof(Examen), 1, p);
+	fclose(p);
+
+	return guardo;
+}
+
+bool Examen::guardar_en_disco(int pos)
+{
+	FILE* p;
+	errno_t err;
+	err = fopen_s(&p, "examenes.dat", "rb+");
+	if (err != 0) { return false; }
+	fseek(p, pos * sizeof(Examen), SEEK_SET);
 	bool guardo = fwrite(this, sizeof(Examen), 1, p);
 	fclose(p);
 

@@ -8,12 +8,131 @@ using namespace std;
 
 std::string ZeroPadNumber(int num)
 {
-	std::ostringstream ss;
-	ss << std::setw(2) << std::setfill('0') << num;
-	return ss.str();
+    std::ostringstream ss;
+    ss << std::setw(2) << std::setfill('0') << num;
+    return ss.str();
+};
+
+std::string parseDayOfWeek(int numDay) {
+    switch (numDay) {
+    case 0:
+        return "Domingo";
+    case 1:
+        return "Lunes";
+    case 2:
+        return "Martes";
+    case 3:
+        return "Miercoles";
+    case 4:
+        return "Jueves";
+    case 5:
+        return "Viernes";
+    case 6:
+        return "Sabado";
+    default:
+        return "Dia inexistente";
+    }
 }
 
 // Funciones globales para gestionar estudiante
+
+bool render_menu_estudiantes()
+{
+    int opcion;
+    
+    while (true)
+    {
+        rlutil::cls();
+        cout << "Menu estudiantes" << endl;
+        cout << "-------------------------------" << endl;
+        cout << "1 - Cargar nuevo estudiante" << endl;
+        cout << "2 - Editar estudiante" << endl;
+        cout << "3 - Listar todos los estudiantes" << endl;
+        cout << "4 - Listar estudiante por legajo" << endl;
+        cout << "5 - Eliminar estudiante" << endl;
+        cout << "-------------------------------" << endl;
+        cout << "0 - Salir del programa" << endl << endl;
+
+        cout << "Opcion: ";
+        cin >> opcion;
+
+        rlutil::cls();
+
+        switch (opcion) {
+        case 1:
+            if (nuevo_estudiante()) mostrar_mensaje("Estudiante registrado correctamente");
+            else mostrar_mensaje("No se pudo guardar el estudiante", 15, 4);
+            break;
+        case 2:
+            if (editar_estudiante()) mostrar_mensaje("Estudiante registrado correctamente");
+            else mostrar_mensaje("No se pudo guardar el estudiante", 15, 4);
+            break;
+        case 3:
+            listar_estudiantes();
+            break;
+        case 4:
+            listar_estudiante_x_legajo();
+            break;
+        case 5:
+            break;
+        case 0:
+            return 0;
+            break;
+        }
+        rlutil::anykey();
+    }    
+};
+
+bool render_menu_examenes()
+{
+    int opcion;
+
+    while (true)
+    {
+        rlutil::cls();
+        cout << "Menu estudiantes" << endl;
+        cout << "-------------------------------" << endl;
+        cout << "1 - Cargar examen" << endl;
+        cout << "2 - Modificar examen" << endl;
+        cout << "3 - Eliminar examen" << endl;
+        cout << "4 - Listar examenes" << endl;
+        cout << "5 - Buscar examen" << endl;
+        cout << "6 - Buscar mejor nota" << endl;
+        cout << "-------------------------------" << endl;
+        cout << "0 - Salir del programa" << endl << endl;
+
+        cout << "Opcion: ";
+        cin >> opcion;
+
+        rlutil::cls();
+
+        switch (opcion) {
+        case 1:
+            if (nuevo_examen()) mostrar_mensaje("Examen registrado correctamente");
+            else mostrar_mensaje("No se pudo guardar el examen", 15, 4);
+            break;
+        case 2:
+            editar_examen();
+            break;
+        case 3:
+            break;
+        case 4:
+            listar_examenes();
+            break;
+        case 5:
+            nueva_busqueda_examen();
+            break;
+        case 6:
+            buscar_mejor_nota();
+            break;
+        case 0:
+            return 0;
+            break;
+        }
+        rlutil::anykey();
+    }
+}
+
 void listar_estudiantes()
 {
     Estudiante aux;
@@ -120,7 +239,7 @@ int buscar_estudiante(int legajo) {
 bool nuevo_examen()
 {
     Examen reg;
-    reg.cargar();
+    if (!reg.cargar()) return false;
     bool ok = reg.guardar_en_disco();
     return ok;
 }
@@ -157,3 +276,111 @@ int cantidad_registros_examenes() {
     cant_reg = bytes / sizeof(Examen);
     return cant_reg;
 }
+
+void buscar_mejor_nota() {
+    int codMateria, legajo;
+    cout << "Codigo materia: ";
+    cin >> codMateria;
+    cout << "Legajo estudiante: ";
+    cin >> legajo;
+    cout << endl << endl;
+    float maxNota;
+    maxNota = max_nota(codMateria, legajo);
+    cout << "La mejor nota en un examen parcial del alumno con legajo " << legajo << " en la materia con codigo " << codMateria << " fue de " << maxNota << endl;
+}
+
+float max_nota(int codMateria, int legajo)
+{
+    int pos = 0;
+    float maxNota = 0;
+    Examen examen;
+    while (examen.leer_de_disco(pos++))
+    {
+        if (examen.getLegajo() == legajo && examen.getCodigoMateria() == codMateria && examen.getTipoExamen() == 'P')
+        {
+            if (examen.getCalificacion() > maxNota)
+            {
+                maxNota = examen.getCalificacion();
+            }
+        }
+    }
+    if (maxNota == 0) { return -1; };
+    return maxNota;
+}
+
+bool examen_es_unico(Examen examen)
+{
+    Examen aux;
+    int pos = 0;
+    while (aux.leer_de_disco(pos++))
+    {
+        if (aux.getFecha().equals(examen.getFecha()) && aux.getCodigoMateria() == examen.getCodigoMateria() && aux.getLegajo() == examen.getLegajo())
+        {
+            return false;
+            break;
+        }
+    }
+    return true;
+}
+
+bool editar_examen() {
+    int codMateria, legajo, pos;
+    Fecha fecha;
+    float calificacion;
+    bool ok = false;
+    
+    cout << "Codigo materia: ";
+    cin >> codMateria;
+    cout << "Legajo: ";
+    cin >> legajo;
+    fecha.cargar();
+
+    pos = buscar_examen(fecha, codMateria, legajo);
+    if (pos >= 0) {
+        Examen reg;
+        reg.leer_de_disco(pos);
+        cout << endl;
+        reg.mostrar();
+        cout << endl << endl;
+        cout << "Calificacion nueva: ";
+        cin >> calificacion;
+        reg.setCalificacion(calificacion);
+        ok = reg.guardar_en_disco(pos);
+    }
+    return ok;
+}
+
+void nueva_busqueda_examen()
+{
+    int codMateria, legajo;
+    Fecha fecha;
+    int pos = -1;
+    cout << "Codigo materia: ";
+    cin >> codMateria;
+    cout << "Legajo: ";
+    cin >> legajo;
+    fecha.cargar();
+    pos = buscar_examen(fecha, codMateria, legajo);
+    
+    if (pos != -1) {
+        Examen examen;
+        examen.leer_de_disco(pos);
+        cout << endl;
+        examen.mostrar();
+    }
+}
+
+int buscar_examen(Fecha fecha, int codMateria, int legajo) {
+    Examen aux;
+    int cantExamenes = cantidad_registros_examenes();
+
+    for (int i = 0; i < cantExamenes; i++)
+    {
+        aux.leer_de_disco(i);
+        if (aux.getFecha().equals(fecha) && aux.getCodigoMateria() == codMateria && aux.getLegajo() == legajo) {
+            return i;
+        }
+    }
+    mostrar_mensaje("El examen soliciotado no existe", 15, 4);
+    return -1;
+};

@@ -82,7 +82,6 @@ void Fecha::mostrar()
 
 void Fecha::cargar()
 {
-	std::cout << "Fecha de nacimiento" << std::endl;
 	std::cout << "Dia: ";
 	std::cin >> _dia;
 	std::cout << "Mes: ";
@@ -92,8 +91,26 @@ void Fecha::cargar()
 
 }
 
-void Fecha::dia_semana()
+std::string Fecha::dia_semana()
 {
-	
+	time_t rawtime;
+	time(&rawtime);
+
+	struct tm timeinfo;
+	localtime_s(&timeinfo, &rawtime);
+	timeinfo.tm_year = _anio - 1900;
+	timeinfo.tm_mon = _mes - 1;
+	timeinfo.tm_mday = _dia;
+
+	mktime(&timeinfo);
+
+	int dayOfWeek = timeinfo.tm_wday;
+	return parseDayOfWeek(dayOfWeek);
+}
+
+bool Fecha::equals(Fecha otraFecha)
+{
+	if (otraFecha._anio == _anio && otraFecha._mes == _mes && otraFecha._dia == _dia) return true;
+	else return false;
 }
 

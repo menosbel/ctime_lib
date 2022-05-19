@@ -14,9 +14,15 @@ public:
 	void setCodMateria(int valor);
 	bool setCalificacion(float valor);
 	bool setTipoExamen(char valor);
-	void cargar();
+	Fecha getFecha() { return _fecha; };
+	int getLegajo() { return _legajoAlumno; };
+	int getCodigoMateria() { return _codMateria; };
+	float getCalificacion() { return _calificacion; };
+	char getTipoExamen() { return _tipoExamen; };
+	bool cargar();
 	void mostrar();
 	bool guardar_en_disco();
+	bool guardar_en_disco(int pos);
 	bool leer_de_disco(int pos);
 };
 
