@@ -5,6 +5,7 @@
 using namespace std;
 #include "rlutil.h"
 #include "base_functions.h"
+#include "reportes.h"
 
 std::string ZeroPadNumber(int num)
 {
@@ -132,6 +133,44 @@ bool render_menu_examenes()
         rlutil::anykey();
     }
 }
+
+bool render_menu_informes()
+{
+    int opcion;
+
+    while (true)
+    {
+        rlutil::cls();
+        cout << "Menu informes" << endl;
+        cout << "-------------------------------" << endl;
+        cout << "1 - Reporte 1" << endl;
+        cout << "2 - Reporte 2" << endl;
+        cout << "3 - Reporte 3" << endl;
+        cout << "-------------------------------" << endl;
+        cout << "0 - Salir del programa" << endl << endl;
+
+        cout << "Opcion: ";
+        cin >> opcion;
+
+        rlutil::cls();
+
+        switch (opcion) {
+        case 1:
+            reporte_1();
+            break;
+        case 2:
+            reporte_2();
+            break;
+        case 3:
+            reporte_3();
+            break;
+        case 0:
+            return 0;
+            break;
+        }
+        rlutil::anykey();
+    }
+};
 
 void listar_estudiantes()
 {

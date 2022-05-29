@@ -10,6 +10,7 @@ std::string parseDayOfWeek(int numDay);
 
 bool render_menu_estudiantes();
 bool render_menu_examenes();
+bool render_menu_informes();
 
 void listar_estudiantes();
 int cantidad_registros_estudiantes();

@@ -4,16 +4,19 @@
 class Examen
 {
 private:
+	int _id;
 	Fecha _fecha;
 	int _legajoAlumno;
 	int _codMateria;
 	float _calificacion;
 	char _tipoExamen;
 public:
+	void setId(int valor) { _id = valor; };
 	void setLegajoAlumno(int valor);
 	void setCodMateria(int valor);
 	bool setCalificacion(float valor);
 	bool setTipoExamen(char valor);
+	int getId() { return _id; };
 	Fecha getFecha() { return _fecha; };
 	int getLegajo() { return _legajoAlumno; };
 	int getCodigoMateria() { return _codMateria; };

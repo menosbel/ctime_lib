@@ -13,6 +13,8 @@ private:
 	Fecha _fnac;
 public:
 	int getLegajo() { return _legajo; };
+	string getApellidos() { return string(_apellidos); };
+	string getNombres() { return string(_nombres); };
 	void setApellidos(std::string valor) {
 		strcpy_s(_apellidos, valor.c_str());
 	}

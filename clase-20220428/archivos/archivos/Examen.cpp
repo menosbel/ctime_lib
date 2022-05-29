@@ -37,9 +37,12 @@ bool Examen::setTipoExamen(char valor) {
 
 bool Examen::cargar()
 {
-	int legajo, codMateria, dia, mes, anio;
+	int legajo, codMateria, dia, mes, anio, id;
 	float calificacion;
 	char tipoExamen;
+
+	id = cantidad_registros_examenes() + 1;
+	setId(id);
 
 	_fecha.cargar();
 	cout << "Legajo alumno: ";

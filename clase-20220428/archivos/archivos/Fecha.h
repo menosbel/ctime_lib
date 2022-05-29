@@ -17,6 +17,9 @@ public:
 	void setDia(int valor);
 	void setMes(int valor);
 	void setAnio(int valor);
+	int getAnio() { return _anio; };
+	int getMes() { return _mes; };
+	int getDia() { return _dia; };
 	void mostrar();
 	void cargar();
 	std::string dia_semana();

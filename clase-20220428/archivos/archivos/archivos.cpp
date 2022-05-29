@@ -16,6 +16,7 @@ int main()
         cout << "-------------------------------" << endl;
         cout << "1 - Menu estudiantes" << endl;
         cout << "2 - Menu examenes" << endl;
+        cout << "3 - Menu informes" << endl;
         cout << "-------------------------------" << endl;
         cout << "0 - Salir del programa" << endl << endl;
 
@@ -30,6 +31,9 @@ int main()
             break;
         case 2:
             render_menu_examenes();
+            break;
+        case 3:
+            render_menu_informes();
             break;
         case 0:
             cout << "Confirma salir? (S/N): ";
