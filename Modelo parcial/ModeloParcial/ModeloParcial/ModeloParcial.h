@@ -3,6 +3,7 @@ class ModeloParcial
 {
 public:
 	void punto1();
+	void punto1_version2();
 	void punto2();
 	void punto3();
 	void printPunto2Header();
