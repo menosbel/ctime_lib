@@ -13,6 +13,7 @@ bool render_menu_examenes();
 bool render_menu_informes();
 
 void listar_estudiantes();
+void listar_estudiantes_ordenado_apellido();
 int cantidad_registros_estudiantes();
 bool nuevo_estudiante();
 void mostrar_mensaje(std::string mensaje, int color = 15, int colorFondo = 2, int x = 1, int y = 20);

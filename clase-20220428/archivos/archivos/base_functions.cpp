@@ -190,6 +190,46 @@ void listar_estudiantes()
     cout << "Total: " << cantEstudiantes;
 }
 
+void listar_estudiantes_ordenado_apellido()
+{
+    int cantEstudiantes = cantidad_registros_estudiantes();
+    Estudiante *estudiantes = new Estudiante[cantEstudiantes];
+    Estudiante aux;
+
+    cout << "LISTADO DE ESTUDIANTES" << endl;
+    cout << "----------------------------" << endl;
+
+    for (int i = 0; i < cantEstudiantes; i++)
+    {
+        estudiantes[i].leer_de_disco(i);
+    }
+
+    for (int i = 0; i < cantEstudiantes - 1; i++)
+    {
+        for (int j = i + 1; j < cantEstudiantes; j++)
+        {
+            if (estudiantes[i].getApellidos() > estudiantes[j].getApellidos())
+            {
+                aux = estudiantes[i];
+                estudiantes[i] = estudiantes[j];
+                estudiantes[j] = aux;
+            }
+        }
+    }
+
+    for (int i = 0; i < cantEstudiantes; i++)
+    {
+        estudiantes[i].leer_de_disco(i);
+        aux.mostrar();
+        cout << endl;
+    }
+
+    cout << "----------------------------" << endl;
+    cout << "Total: " << cantEstudiantes;
+
+    delete estudiantes;
+}
+
 int cantidad_registros_estudiantes() {
     FILE* p;
     errno_t err;
