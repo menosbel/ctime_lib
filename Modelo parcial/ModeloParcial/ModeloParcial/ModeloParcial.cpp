@@ -46,8 +46,19 @@ void ModeloParcial::punto1()
 	}
 }
 
-void ModeloParcial::punto1_version2()
+bool ModeloParcial::punto1_version2()
 {
+	int cantEstudiantes = cantidad_registros_estudiantes();
+	Estudiante estudiante;
+	int pos = 0;
+
+	bool* vecEstudiantes = new bool[cantEstudiantes];
+	if (vecEstudiantes == nullptr) { return false; };
+
+	while (estudiante.LeerDeDisco(pos++))
+	{
+
+	}
 
 };
 
